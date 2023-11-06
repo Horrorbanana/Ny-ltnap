@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Napidő</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<script src="/cdn-cgi/apps/head/SSaYB9_3atmGiB-OssOQcKheRog.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="/static/css/main.css">
+<link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<script src="{{ url_for('static', filename="service-worker.js") }}"></script>
+<script>
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', function() {
+                        navigator.serviceWorker.register('/service-worker.js')
+                        .then(function(registration) {
+                            console.log('Service worker registered successfully');
+                        })
+                    .catch(function(err) {
+                        console.error('Error registering service worker: ', err);
+                    });
+                    });
+                }
+</script>
+</head>
+<body>
+<main>
+<h1 class="text-center">Napidő</h1>
+<i>Made by Stonawski</i>
+<div class="oszlop"></div>
+<div class="text-center">
+<h3>A napidő kiszámításához internetkapcsolat szükséges.</h3>
+</div>
+<div id="outer" class="container text-center">
+<div id="inner">
+<h1 class="suntime">--:--</h1>
+<i>Legutóbb lekérdezett: --</i>
+</div>
+</div>
+<div class="text-center">
+<h3>További számítások</h3>
+<p>A módosult napidő: --:--:--</p>
+<p>A delelési idő: --:--</p>
+<p>A delelési magasság:--°</p>
+<p>A dátum sorszáma: --</p>
+<p>Aktuális idő: --:--:--</p>
+</div>
+</main>
+</body>
+</html>

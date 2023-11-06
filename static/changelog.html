@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Változási napló</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <div class="text-center">
+        <h1>Változási napló</h1>
+        <a href="/" class="btn btn-secondary">Visszalépés</a>
+    </div>
+    <br>
+    <br>
+    <h2>suntime-v0.1.1</h2>
+    <p>+ A Suntime - Napidő alkalmazás algoritmusa megírásra került, Scilab programozási nyelven</p>
+    <br>
+    <br>
+    <h2>suntime-v0.2.1</h2>
+    <p style="color: red;">- A Scilab nyelv elhagyása</p>
+    <p>+ A program algoritmusának átfordítása Python nyelvre</p>
+    <br>
+    <h2>suntime-v0.2.2</h2>
+    <p>+ Az alkalmazás GPS koordinátákkal dolgozik, egy új algoritmus bekéri a település nevét, majd lekérdezi a GPS koordinátákat</p>
+    <br>
+    <h2>suntime-v0.2.3</h2>
+    <p>+ Flask keretrendszer hozzáadása a Python kódhoz</p>
+    <p>+ Webalkalmazás hozzácsatolása a Flask keretrendszerhez</p>
+    <p>+ Grafikus interfész létrehozása</p>
+    <br>
+    <h2>suntime-v0.2.4</h2>
+    <p>+ Interaktivitás hozzáadása, felhasználó által megadott adat kezelése (település -> integrálás a számításba), majd annak kiíratása az alkalmazásban</p>
+    <p>+ A grafikus interfész továbbfejlesztése, a napidő van a középpontban, minden más számítás "további számítás"-nak minősül</p>
+    <br>
+    <br>
+    <h2>suntime-v0.3.1</h2>
+    <p>+ Real-time optimalizálás, az adatok másodpercenként frissülnek, ezt egy külön algoritmus kezeli JavaScript nyelven</p>
+    <p>+ A módosított napidő értéke mostmár másodpercpontos</p>
+    <p>+ Aktuális idő kiíratása</p>
+    <br>
+    <h2>suntime-v0.3.2</h2>
+    <p>+ Városrész támogatás, már nem csak településeket, hanem városrészeket is meg lehet adni a pontosabb eredmény érdekében</p>
+    <p>+ Északi hosszúság kiíratása</p>
+    <p>+ Keleti szélesség kiíratása</p>
+    <p>+ A napidő még vastagabban jelenik meg, hogy kitűnjön jobban a többi szöveg közül</p>
+    <br>
+    <h2>suntime-v0.3.3</h2>
+    <p>+ Információ gomb hozááadása, ami egy felugró ablakot nyit meg, melyben elolvashatók az általános információk és a gyakran ismételt kérdések, válaszokkal</p>
+    <p>+ A lekérdezés mező színeinek optimalizálása az alkalmazás színeihez</p>
+    <p>+ A lekérdezés gomb mező színeinek optimalizálása az alkalmazás színeihez</p>
+    <br>
+    <h2>suntime-v0.3.4</h2>
+    <p>+ Hibakezelési algoritmus hozzáadása, ha olyan települést vagy városrészt adunk meg, ami nem létezik, akkor az oldal "Internal Server Error" hibakód helyett újratölti az alkalmazást, majd közli a felhasználóval, hogy az általa megadott település vagy városrész nem létezik</p>
+    <br>
+    <h2>suntime-v0.3.5</h2>
+    <p>+ Keresőmotor hozzáadása, a Geoapify keresőmotor használata, ami képes település és városrészek után keresni (autocomplete)</p>
+    <p>+ Ha kikattintunk az infobox-ból, akkor is bezárul</p>
+    <p>+ Napfelkelte és napnyugta kiszámításának hozzáadása</p>
+    <br>
+    <br>
+    <h2>suntime-v0.4.1</h2>
+    <p>+ A felhasználó nem írhat be többé saját települést vagy városrészt, hanem csak a Geoapify keresőmotor által kilistázott eredmények közül választhat (a letisztultságért)</p>
+    <p>+ Mostmár nem csak magyar helyekkel, hanem a világ bármely településével vagy városrészével képes dolgozni az algoritmus</p>
+    <br>
+    <h2>suntime-v0.4.2</h2>
+    <p>+ A napfelkelte és napnyugta számításait használva az oldalon dinamikus háttér jelenik meg. Ha a nap még fent van az adott területen, egy nap, ha már lement a nap, akkor egy félhold csilagokkal látható</p>
+    <br>
+    <h2>suntime-v0.4.3</h2>
+    <p>+ A webalkalmazás 2 percenként frissül, így még pontosabban láthatjuk a napidőt élőben, közvetlen felhasználói beavatkozás nélkül</p>
+</body>
+</html>

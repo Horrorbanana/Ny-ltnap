@@ -1,0 +1,36 @@
+{
+  "background_color": "#000000",
+  "description": "Az alkalmazás kiszámítja a nap állásának megfelelő időt. Fejlesztette: Stonawski Benjamin és dr. Stonawski Tamás",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Napidő",
+  "orientation": "portrait",
+  "scope": "https://suntime.stonawski.hu/",
+  "short_name": "Napidő",
+  "start_url": "https://suntime.stonawski.hu/",
+  "theme_color": "#000000",
+  "categories": [
+    "education",
+    "productivity",
+    "utilities",
+    "weather"
+  ],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "/static/favicon.ico"
+    },
+    {
+      "src": "/static/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [],
+  "lang": "hu"
+}

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Napidő</title>
+<meta http-equiv="refresh" content="120">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<script src="/cdn-cgi/apps/head/SSaYB9_3atmGiB-OssOQcKheRog.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Style+Script">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="static/css/main.css">
+<link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
+<meta property="og:title" content="Napidő" />
+<meta property="og:image" content="https://suntime.stonawski.hu/static/icon-512.png" />
+<meta name="description" content="A valódi napidő kiszámítása egyszerűen.">
+<meta name="robots" content="index, follow">
+
+<link rel="apple-touch-icon" href="static/apple-icon-180.png">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link rel="apple-touch-startup-image" href="static/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1290-2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2796-1290.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1179-2556.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2556-1179.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="static/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+
+</head>
+<body onload="updateClock()">
+    <div class="gradient"></div>
+    <div class="gradient-night">
+        <div class="container_night">
+            <div class="stars"></div>
+            <div class="moon"></div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-12 col-sm-12 text-center oszlop-1">
+        <div>
+          <a href="./">
+            <img class="logo text-center" src="https://camo.githubusercontent.com/f238203a397607848a70f32fa85b88dc873fb27e72f1c682b5c5787992bbcc66/68747470733a2f2f73756e74696d652e73746f6e6177736b692e68752f7374617469632f69636f6e2d3531322e706e67" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12 text-center oszlop-2">
+          <h1 class="text-center">Napidő</h1>
+          <div class="text-center">
+              <form autocomplete="off" method="POST" action="/varosadat" onsubmit="return false;">
+                  <input type="text" id="inp" name="inp" placeholder="Település vagy városrész neve">
+                  <br><br>
+                  <div id="mobileBreak"></div>
+                  <div class="address-list-outer">
+                    <div id="address-list"></div>
+                  </div>
+                  <script>
+                    const apiKey = '2ed27eaf716d4ed2be37d3f54b09c628'; // API kulcs
+                    const input = document.querySelector('#inp');
+                    const list = document.querySelector('#address-list');
+                    const mobileBreak = document.getElementById('mobileBreak');
+                
+                    input.addEventListener('input', () => {
+                      const query = input.value;
+                      list.innerHTML = '';
+                      if (query.length > 2) {
+                        axios.get(`https://api.geoapify.com/v1/geocode/autocomplete?text=${query}&type=city&apiKey=${apiKey}`)
+                          .then((response) => {
+                            const results = response.data.features.slice(0, 3);
+                            if (results.length > 0) {
+                              list.style.display = 'block';
+                              mobileBreak.style.display = 'block';
+                              results.forEach((result) => {
+                                const li = document.createElement('li');
+                                li.innerText = result.properties.formatted;
+                                li.addEventListener('click', (event) => {
+                                  input.value = result.properties.formatted;
+                                  list.style.display = 'none';
+                                  mobileBreak.style.display = 'none';
+                                  event.preventDefault();
+                                  document.querySelector('form').submit();
+                                });
+                                list.appendChild(li);
+                              });
+                            } else {
+                              list.style.display = 'none';
+                              mobileBreak.style.display = 'none';
+                            }
+                          })
+                          .catch((error) => {
+                            console.error(error);
+                          });
+                      } else {
+                        list.style.display = 'none';
+                        mobileBreak.style.display = 'none';
+                      }
+                    });
+                
+                    document.addEventListener('click', (event) => {
+                      if (!list.contains(event.target)) {
+                        list.style.display = 'none';
+                        mobileBreak.style.display = 'none';
+                      }
+                    });
+                  </script>
+              </form>
+          </div>
+          <div style="height: 50px"></div>
+          <div class="container text-center">
+        <h1 class="suntime">
+                  <div class="suntimeDiv">
+                      <strong><b><span id="variable3"></span>:<span id="variable2"></span></strong></b></h1>
+                  </div>
+        <p>
+          <i>
+            <b>{{ varos }}</b>
+            <br>
+            Északi szélesség: <b>{{ szel }}</b> 
+            <br>
+            Nyugati hosszúság: <b>{{ hossz }}</b>
+                              <br>
+            Az aktuális idő: <b><span id="clock"></span>:<span id="variable1Akt"></span></b>
+          </i>
+        </p>
+          <div style="height: 50px"></div>    
+          <div class="text-center">
+              <h3>További számítások</h3>
+              <p>A módosult napidő: <b><span id="variable3Mod"></span>:<span id="variable2Mod"></span>:<span id="variable1"></span></b></p>
+              <p>A delelési idő: <b>{{ del_ido }}</b></p>
+              <p>A delelési magasság: <b>{{ del_mag }}</b></p>
+              <p>A dátum sorszáma: <b>{{ sorszam }}</b></p>
+              <p>A napfelkelte: <b>{{ napfelkelte }}</b></p>
+              <p>A napnyugta: <b>{{ napnyugta }}</b></p>
+              <p>A nappal hossza: <b>{{ nap_hossz }}</b></p>  
+          </div>
+    </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 text-center oszlop-3">
+          <div class="gyarmat-ido">
+            <a class="text-decoration-none gyarmatlink" href="./?varos=Fehérgyarmat,+Szabolcs-Szatmár-Bereg">
+              Fehérgyarmat, Szabolcs-Szatmár-Bereg
+              <h1 id="gyarmatnapido"></h1>
+            </a>
+          </div>
+        </div>
+    </div>
+     <button id="info-button">i</button>
+
+  <div id="info-box">
+    <div id="info-content">
+      <div>
+        <div class="text-center">
+          <b class="info-box-heading">Suntime - Napidő<br>v0.4.3</b>
+          <br>
+          <b class="info-box-subheading-desc">(Fejlesztette: Stonawsi Benjamin, Gecsey Botond, Koszta Máté, Deák Levente)</b>
+          <br>
+	        <b class="info-box-subheading-desc">(A matematikai számításokat megalkotta: dr. Stonawski Tamás)</b>
+        </div>
+        <br>
+        <br>
+        <br>
+        <p class="info-box-desc">A Napidő alkalmazás megmondja, hogy a nap jelenlegi állása szerint, több számítást végrehajtva mennyi a valós idő. Ha egy napórát megnézünk az általunk beírt településen, ezt az időt olvasnánk le, hiszen a közönséges, aktuális idő országhatároktól függően zónaidőt használ, ez pedig a nap állásának elvét.</p>
+        <br>
+        <b class="info-box-desc">Az alkalmazás jelenleg béta verziójú, és fejlesztés alatt áll, így előfordulhatnak problémák.</b>
+        <br>
+        <a href="static/changelog.html">Változási napló megtekintése</a>
+        <br>
+        <br>
+        <br>
+        <b class="info-box-subheading">Hogyan tudom megnézni, hogy mennyi a napidő?</b>
+        <br>
+        <br>
+        <p class="info-box-desc">A “Település vagy városrész neve” mezőbe írhatod be a település nevét, aminek meg szeretnéd nézni a napidejét. Nagyobb városok esetén ajánljuk, hogy ne a város nevét, hanem a városrészt írd be (például Budapest helyett Óbuda, Nyíregyháza helyett Örökösföld, Mátészalka helyett Fellegvár, stb.), hiszen különböző városrészek között is eltérhet a napidő! Ha nem városrészt írsz be, hanem csak településnevet, akkor az alkalmazás a település földrajzi középpontjánál fogja elvégezni a számításokat. Nem muszáj a teljes nevet beírni, hiszen ha elkezded begépelni azt, az alkalmazás feldobja a lehetséges település- és városneveket, amelyek közül választhatsz.</p>
+        <br>
+        <br>
+        <br>
+        <b class="info-box-subheading">Tud-e még valamit ezen kívűl?</b>
+        <br>
+        <br>
+        <p class="info-box-desc">A napidőn kívűl az alkalmazás kiszámítja a településen a nap delelési idejét, és delelési magasságát (szögét) is. Ezek mellett láthatod még a jelenlegi dátum sorszámát, és hogy mennyi az aktuális zónaidő, annak érdekében, hogy könnyen összehasonlíthasd a nap- és zónaidő közti különbséget, valamint a napfelkeltét, a napnyugtát és a nappal hosszát is képes precízen és pontosan kiszámolni.</p>
+        <br>
+        <br>
+        <br>
+        <b class="info-box-subheading">Le tudom tölteni valahol alkalmazásként?</b>
+        <br>
+        <br>
+        <p class="info-box-desc">Természetesen, hiszen ez egy PWA (progresszív webalkalmazás), amit könnyen letölthetsz telefonodra. Az oldal megosztása gombra koppintva hozzáadhatod a főképernyőhöz az alkalmazást.</p>
+        <br>
+        <br>
+        <br>
+        <b class="info-box-subheading">Hogyan működik mindez?</b>
+        <br>
+        <br>
+        <p class="info-box-desc">A Napidő alkalmazás a Python nyelvet és a Flask keretrendszert kombinálva számítja ki az általad megadott település napidejét, majd a megjelenítéshez, és az idő frissítéséhez JavaScript nyelvet használ.</p>
+        <br>
+        <br>
+        <a href="static/aszf.html">Adatvédelmi nyilatkozat (ÁSZF)</a>
+      </div>
+      <button id="close-button">X</button>
+    </div>
+  </div>
+  <div id="info-box-background"></div>
+</body>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/static/service-worker.js')
+            .then(function(registration) {
+                console.log('Service worker registered successfully');
+            })
+        .catch(function(err) {
+            console.error('Error registering service worker: ', err);
+        });
+        });
+    }
+
+    let mp = '{{ masodperc }}';
+    let perc = '{{ perc }}';
+    let ora = '{{ ora }}';
+    
+    let variable1 = parseInt(mp);
+    let variable2 = parseInt(perc);
+    let variable3 = parseInt(ora);
+
+    let timeString = "{{ gyarmat_napido }}";
+    let timeArray = timeString.split(":");
+    let gyarmatOra = parseInt(timeArray[0]);
+    let gyarmatPerc = parseInt(timeArray[1]);
+    gyarmatPerc = gyarmatPerc.toString().padStart(2, '0');
+
+    let gyarmatNapido = gyarmatOra + ":" + gyarmatPerc;
+    document.getElementById("gyarmatnapido").innerHTML = gyarmatNapido;
+	
+    setInterval(() => {
+        variable1++;
+        if (variable1 === 60) {
+          variable1 = 0;
+	        gyarmatPerc++
+	        if (gyarmatPerc === 60) {
+            gyarmatPerc = 0;
+            gyarmatOra++;
+          }
+        }
+    gyarmatPerc = gyarmatPerc.toString().padStart(2, '0');
+	  let gyarmatNapidoFriss = gyarmatOra + ":" + gyarmatPerc;
+    document.getElementById("gyarmatnapido").innerHTML = gyarmatNapidoFriss;
+    }, 1000);
+
+    setInterval(() => {
+        if (variable1 === 0) {
+        variable2++;
+        if (variable2 === 60) {
+            variable2 = 0;
+        }
+        }
+    }, 1000);
+
+    setInterval(() => {
+        if (variable2 === 0 && variable1 === 0) {
+        variable3++;
+        if (variable3 === 24) {
+            variable3 = 0;
+        }
+        }
+    }, 1000);
+
+    setInterval(() => {
+        let formattedVariable1 = variable1.toString();
+        if (variable1 < 10) {
+        formattedVariable1 = "0" + formattedVariable1;
+        }
+        if (isNaN(variable1)) {
+            document.getElementById("variable1").textContent = "--";
+        } else {
+            document.getElementById("variable1").textContent = formattedVariable1;
+            document.getElementById("variable1Akt").textContent = formattedVariable1;
+        }
+    }, 100);
+
+    setInterval(() => {
+        let formattedVariable2 = variable2.toString();
+        if (variable2 < 10) {
+        formattedVariable2 = "0" + formattedVariable2;
+        }
+        if (isNaN(variable2)) {
+            document.getElementById("variable2").textContent = "--";
+            document.getElementById("variable2Mod").textContent = "--";
+        } else {
+        document.getElementById("variable2").textContent = formattedVariable2;
+        document.getElementById("variable2Mod").textContent = formattedVariable2;
+        }
+    }, 100);
+
+    setInterval(() => {
+        if (isNaN(variable3)) {
+            document.getElementById("variable3").textContent = "--";
+            document.getElementById("variable3Mod").textContent = "--";
+        } else {
+            document.getElementById("variable3").textContent = variable3;
+            document.getElementById("variable3Mod").textContent = variable3;
+        }
+    }, 100);
+
+    function updateClock() {
+        if ('{{ idozona }}' === '') {
+        document.getElementById('clock').textContent = '--:--';
+        document.getElementById('variable1Akt').textContent = '--';
+        document.querySelector('.gradient-night').style.display = 'none';
+        } else {
+        let now = new Date();
+        let formatter = new Intl.DateTimeFormat('hu-HU', {
+            timeZone: '{{ idozona }}',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: false
+        });
+        let parts = formatter.formatToParts(now);
+        let time = parts[0].value + ':' + parts[2].value;
+        document.getElementById('clock').textContent = time;
+        var felkelte = parseInt('{{ felkelte_ora }}') + parseInt('{{ felkelte_perc }}') / 60;
+        var nyugta = parseInt('{{ nyugta_ora }}') + parseInt('{{ nyugta_perc }}') / 60;
+        var aktualido = parseInt(parts[0].value) + parseInt(parts[2].value) / 60;
+        if (aktualido > felkelte && aktualido < nyugta) {
+            document.querySelector('.gradient-night').style.display = 'none';
+        } else {
+            document.querySelector('.gradient').style.display = 'none';
+        }
+        }
+    }
+
+setInterval(updateClock, 1000);
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="static/js/infobox.js"></script>
+</html>
