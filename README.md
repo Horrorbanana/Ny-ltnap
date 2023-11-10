@@ -7,7 +7,7 @@
 </br>
 (A matematikai számításokat megalkotta: dr. Stonawski Tamás)
 
-[<img src="https://suntime.stonawski.hu/static/napidologo.png">](https://suntime.stonawski.hu/)
+[<img src="https://suntime.stonawski.hu/static/napidologo.png">](https://nyiltnap.stonawski.hu/)
 </br>
 ![Verzió](https://stonawski.hu/share/suntimeverzio.svg)
 </br>
